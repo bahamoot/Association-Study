@@ -34,3 +34,12 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# Custom
+*.bak
+*~
+MANIFEST
+*big_data/
+*tmp/
+*disable*
+*obsolete*
