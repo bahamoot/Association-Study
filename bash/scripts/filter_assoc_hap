@@ -1,0 +1,12 @@
+#!/bin/bash
+
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+raw_assoc_hap_1_50=$ASSOC_HAP_OUT_DIR/AL5cnc-hap-236cases-300ctrls-woRelatives-1-50.assoc.hap
+raw_assoc_hap_100=$ASSOC_HAP_OUT_DIR/AL5cnc-hap-236cases-300ctrls-woRelatives-100.assoc.hap
+
+filtered_assoc_hap_1_50=$ASSOC_HAP_OUT_DIR/AL5cnc-hap-236cases-300ctrls-woRelatives-1-50.filtered.assoc.hap
+filtered_assoc_hap_100=$ASSOC_HAP_OUT_DIR/AL5cnc-hap-236cases-300ctrls-woRelatives-100.filtered.assoc.hap
+
+Pana_filter_assoc_hap $raw_assoc_hap_1_50 > $filtered_assoc_hap_1_50
+Pana_filter_assoc_hap $raw_assoc_hap_100 > $filtered_assoc_hap_100
