@@ -1,0 +1,6 @@
+import sys
+from pana.app import filter_assoc_hap
+
+
+filter_assoc_hap(sys.argv[1])
+
