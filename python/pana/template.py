@@ -7,11 +7,17 @@ import inspect
 import gc
 
 
-class CaPBase(object):
-    """ CaP base class """
+class PanaBase(object):
+    """ Pana base class """
 
     def __init__(self):
         pass
+
+    def __str__(self):
+        return self.__repr__()
+
+    def __repr__(self):
+        return '<' + self.__class__.__name__ + ' Object> ' + str(self.get_raw_repr())
 
     def remove_dir(self, dir_name):
         if os.path.exists(dir_name):
@@ -51,22 +57,22 @@ class CaPBase(object):
         return funcs[0].__name__ if funcs else None
 
 
-class Tester(unittest.TestCase, CaPBase):
-    """ general CaP template for testing """
+class Tester(unittest.TestCase, PanaBase):
+    """ general Pana template for testing """
 
     individual_debug = False
 
     def __init__(self, test_name):
         unittest.TestCase.__init__(self, test_name)
-        CaPBase.__init__(self)
+        PanaBase.__init__(self)
 
     def remove_dir(self, dir_name):
         self.assertTrue(dir_name, '"None" is not a valid directory')
-        CaPBase.remove_dir(self, dir_name)
+        PanaBase.remove_dir(self, dir_name)
 
     def create_dir(self, dir_name):
         self.assertTrue(dir_name, '"None" is not a valid directory')
-        CaPBase.create_dir(self, dir_name)
+        PanaBase.create_dir(self, dir_name)
 
     def empty_working_dir(self):
         if not self.individual_debug:
@@ -82,9 +88,12 @@ class Tester(unittest.TestCase, CaPBase):
                                                                   'tmp'),
                                                      self.test_class),
                                         self.test_function)
-        self.data_dir= os.path.join(os.path.join(os.path.dirname(__file__), 
+        self.data_dir = os.path.join(os.path.join(os.path.dirname(__file__), 
                                                  'data'),
                                     self.test_class)
+
+    def full_path(self, file_name):
+        return os.path.join(self.data_dir, file_name)
 
     def init_test(self, test_function):
         self.test_function = test_function
